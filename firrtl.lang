@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+
+ This file is part of GtkSourceView
+
+ Authors: Kevin Läufer
+ Copyright (C) 2017 Kevin Läufer <ekiwi@berkeley.edu>
+
+ GtkSourceView is free software; you can redistribute it and/or
+ modify it under the terms of the GNU Lesser General Public
+ License as published by the Free Software Foundation; either
+ version 2.1 of the License, or (at your option) any later version.
+
+ GtkSourceView is distributed in the hope that it will be useful,
+ but WITHOUT ANY WARRANTY; without even the implied warranty of
+ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+ Lesser General Public License for more details.
+
+ You should have received a copy of the GNU Lesser General Public
+ License along with this library; if not, write to the Free Software
+ Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
+
+-->
+
+<language id="firrtl" _name="Firrtl" version="2.0" _section="Source">
+  <metadata>
+    <property name="globs">*.fir</property>
+    <property name="line-comment-start">;</property>
+  </metadata>
+
+  <styles>
+    <style id="keyword" _name="Keyword" map-to="def:keyword"/>
+    <style id="string" _name="String" map-to="def:string"/>
+    <style id="comment" _name="Comment" map-to="def:comment"/>
+  </styles>
+
+  <definitions>
+    <context id="keyword" style-ref="keyword">
+      <keyword>if</keyword>
+    </context>
+
+    <context id="string" style-ref="string" class="string" class-disabled="no-spell-check">
+      <start>"</start>
+      <end>"</end>
+      <include>
+        <!--<context ref="string-escape"/>-->
+        <context ref="def:line-continue"/>
+      </include>
+    </context>
+
+    <context id="comment" style-ref="comment">
+      <start>;</start>
+      <end>$</end>
+    </context>
+
+    <context id="firrtl" class="no-spell-check">
+      <include>
+        <context ref="keyword"/>
+        <context ref="string"/>
+        <context ref="comment"/>
+      </include>
+    </context>
+  </definitions>
+
+</language>
+
